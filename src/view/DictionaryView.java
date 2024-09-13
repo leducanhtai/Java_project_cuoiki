@@ -4,7 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import controller.DictionaryController;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -19,13 +23,17 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
+import javax.swing.JCheckBox;
 
 public class DictionaryView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField_search;
 
 	/**
 	 * Launch the application.
@@ -46,58 +54,132 @@ public class DictionaryView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	DictionaryController dictionaryController = new DictionaryController(this);
+	private JTextField textField_search;
+	private JPanel panel;
+	private JMenuItem jMenuItem_search;
+	private JMenuItem jMenuItem_help;
+	
+	private List<JPanel> wordPanels = new ArrayList<>();
+	private JPanel panel_1;
+	 
 	public DictionaryView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1667, 1044);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(128, 255, 255));
+		contentPane.setBackground(new Color(0, 128, 64));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_tool = new JPanel();
-		panel_tool.setBackground(new Color(0, 128, 255));
+		panel_tool.setBackground(new Color(0, 128, 64));
 		contentPane.add(panel_tool, BorderLayout.WEST);
 		panel_tool.setLayout(new GridLayout(15,1));
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		panel_tool.add(lblNewLabel_2);
+		JMenuItem jMenuItem_home = new JMenuItem("Home");
+		jMenuItem_home.setForeground(new Color(255, 255, 255));
+		jMenuItem_home.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		jMenuItem_home.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\home2.png"));
+		jMenuItem_home.setBackground(new Color(0, 0, 0));
+		jMenuItem_home.addActionListener(dictionaryController);
+		panel_tool.add(jMenuItem_home);
 		
-		JPanel panel_menu = new JPanel();
-		panel_menu.setBackground(new Color(255, 255, 255));
-		contentPane.add(panel_menu, BorderLayout.NORTH);
-		panel_menu.setLayout(new GridLayout(1,4));
+		JMenuItem jMenuItem_dowload = new JMenuItem("Dowload");
+		jMenuItem_dowload.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		jMenuItem_dowload.setForeground(new Color(255, 255, 255));
+		jMenuItem_dowload.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\dowload.png"));
+		panel_tool.add(jMenuItem_dowload);
 		
-		JLabel jLabel_title = new JLabel("Dictionary");
-		jLabel_title.setFont(new Font("Times New Roman", Font.BOLD, 50));
-		panel_menu.add(jLabel_title);
-		jLabel_title.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(DictionaryView.class.getResource("dictionary.png"))));
+		JMenuItem jMenuItem_game = new JMenuItem("Game");
+		jMenuItem_game.setForeground(new Color(255, 255, 255));
+		jMenuItem_game.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		jMenuItem_game.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\game.png"));
+		jMenuItem_game.addActionListener(dictionaryController);
+		panel_tool.add(jMenuItem_game);
 		
-		JPanel panel_search = new JPanel();
-		panel_menu.add(panel_search);
-		panel_search.setLayout(new BorderLayout(0, 0));
+		JMenuItem jMenuItem_exit = new JMenuItem("Exit");
+		jMenuItem_exit.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\Github-Octicons-Sign-out-16.512.png"));
+		jMenuItem_exit.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		jMenuItem_exit.setBackground(new Color(240, 240, 240));
+		jMenuItem_exit.setForeground(new Color(255, 255, 255));
+		jMenuItem_exit.addActionListener(dictionaryController);
+		panel_tool.add(jMenuItem_exit);
+		
+		jMenuItem_help = new JMenuItem("Help");
+		jMenuItem_help.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\help.png"));
+		jMenuItem_help.setForeground(new Color(255, 255, 255));
+		jMenuItem_help.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		panel_tool.add(jMenuItem_help);
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(227, 255, 227));
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 		
 		textField_search = new JTextField();
-		textField_search.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		panel_search.add(textField_search, BorderLayout.CENTER);
+		textField_search.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+		textField_search.setBounds(35, 32, 698, 83);
+		panel.add(textField_search);
 		textField_search.setColumns(10);
 		
-		JLabel jLabel_search = new JLabel("");
-		panel_menu.add(jLabel_search);
-		jLabel_search.setBackground(new Color(255, 255, 255));
-		jLabel_search.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(DictionaryView.class.getResource("search2.png"))));
-		//jButton_search.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(DictionaryView.class.getResource("search2.png"))));
+		jMenuItem_search = new JMenuItem("Search");
+		jMenuItem_search.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		jMenuItem_search.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\search.png"));
+		jMenuItem_search.setBounds(743, 32, 179, 83);
+		jMenuItem_search.addActionListener(dictionaryController);
+		panel.add(jMenuItem_search);
 		
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(208, 255, 208));
+		panel_1.setBounds(0, 125, 1498, 872);
+		panel.add(panel_1);
+		panel_1.setLayout(new GridLayout(100,1));
 		
-		JLabel lblNewLabel = new JLabel("");
-		panel_menu.add(lblNewLabel);
+		JScrollPane scrollPane = new JScrollPane(panel_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		panel_menu.add(lblNewLabel_1);
+//		JPanel panel_word = new JPanel();
+//		panel_word.setBackground(new Color(208, 255, 208));
+//		panel_1.add(panel_word);
+//		panel_word.setLayout(new GridLayout(1,6));
+//		
+//		JLabel lblNewLabel = new JLabel("New label");
+//		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+//		panel_word.add(lblNewLabel);
+//		
+//		JLabel lblNewLabel_1 = new JLabel("");
+//		panel_word.add(lblNewLabel_1);
+//		
+//		JLabel lblNewLabel_2 = new JLabel("");
+//		panel_word.add(lblNewLabel_2);
+//		
+//		JCheckBox chckbxNewCheckBox = new JCheckBox("Remembered");
+//		chckbxNewCheckBox.setFont(new Font("Tahoma", Font.ITALIC, 20));
+//		chckbxNewCheckBox.setBackground(new Color(208, 255, 208));
+//		// Thêm icon vào JCheckBox
+//		ImageIcon uncheckedIcon = new ImageIcon("C:\\Users\\LENOVO\\Pictures\\bright_2.png");
+//		ImageIcon checkedIcon = new ImageIcon("C:\\Users\\LENOVO\\Pictures\\bright.png");
+//		// Đặt icon khi checkbox chưa được chọn
+//		chckbxNewCheckBox.setIcon(uncheckedIcon);
+//		// Đặt icon khi checkbox được chọn
+//		chckbxNewCheckBox.setSelectedIcon(checkedIcon);
+//		panel_word.add(chckbxNewCheckBox);
+//		
+//		JMenuItem mntmNewMenuItem = new JMenuItem("Dowload");
+//		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.ITALIC, 20));
+//		mntmNewMenuItem.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\dowload.png"));
+//		panel_word.add(mntmNewMenuItem);
+		// Tạo 100 panel giống panel_word và lưu vào list
+        for (int i = 0; i < 100; i++) {
+            JPanel panel_word = createPanelWord(i);
+            wordPanels.add(panel_word);  // Lưu vào list
+            panel_1.add(panel_word);  // Thêm vào panel_1
+        }
 		
-		textField_search.setBorder(new RoundedBorder(30));
+		scrollPane.setBounds(0, 125, 1498, 872);  // Đặt kích thước và vị trí cho JScrollPane
+		panel.add(scrollPane);
 		
 		URL urlIconFrame = DictionaryView.class.getResource("title.png");
 		Image img = Toolkit.getDefaultToolkit().createImage(urlIconFrame);
@@ -106,5 +188,62 @@ public class DictionaryView extends JFrame {
 		
 		this.setVisible(true);
 	}
+	private JPanel createPanelWord(int index) {
+        JPanel panel_word = new JPanel();
+        panel_word.setBackground(new Color(208, 255, 208));
+        panel_word.setLayout(new GridLayout(1, 6));
 
+        JLabel lblNewLabel = new JLabel("Label " + index);
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        panel_word.add(lblNewLabel);
+
+        JLabel lblNewLabel_1 = new JLabel("");
+        panel_word.add(lblNewLabel_1);
+        
+        JMenuItem jMenuItem_sound = new JMenuItem("");
+        jMenuItem_sound.setFont(new Font("Segoe UI", Font.ITALIC, 20));
+        jMenuItem_sound.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\sound.png"));
+        panel_word.add(jMenuItem_sound);
+
+        JCheckBox chckbxNewCheckBox = new JCheckBox("Remembered");
+        chckbxNewCheckBox.setFont(new Font("Tahoma", Font.ITALIC, 20));
+        chckbxNewCheckBox.setBackground(new Color(208, 255, 208));
+
+        // Thêm icon vào JCheckBox
+        ImageIcon uncheckedIcon = new ImageIcon("C:\\Users\\LENOVO\\Pictures\\bright_2.png");
+        ImageIcon checkedIcon = new ImageIcon("C:\\Users\\LENOVO\\Pictures\\bright.png");
+
+        // Đặt icon khi checkbox chưa được chọn
+        chckbxNewCheckBox.setIcon(uncheckedIcon);
+        // Đặt icon khi checkbox được chọn
+        chckbxNewCheckBox.setSelectedIcon(checkedIcon);
+        panel_word.add(chckbxNewCheckBox);
+        
+        JMenuItem mntmNewMenuItem = new JMenuItem("Dowload");
+        mntmNewMenuItem.setFont(new Font("Segoe UI", Font.ITALIC, 20));
+        mntmNewMenuItem.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\dowload.png"));
+        panel_word.add(mntmNewMenuItem);
+
+        return panel_word;
+    }
+	public void runGame() {
+		clearPanel();
+	    
+	}
+	public void selectHome() {
+		clearPanel();
+		// Add textField_search and jMenuItem_search back to the panel
+	    panel.add(textField_search);
+	    panel.add(jMenuItem_search);
+
+	}
+	public void clearPanel() {
+	    // Xóa hết các phần tử trên panel
+	    panel.removeAll();
+
+	    // Cập nhật lại giao diện
+	    panel.revalidate();
+	    panel.repaint();
+	}
 }
+
