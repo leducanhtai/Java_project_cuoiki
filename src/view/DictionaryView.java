@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JCheckBox;
+import javax.swing.JTextArea;
 
 public class DictionaryView extends JFrame {
 
@@ -63,6 +64,12 @@ public class DictionaryView extends JFrame {
 	
 	private List<JPanel> wordPanels = new ArrayList<>();
 	private JPanel panel_1;
+	private String change = "Home";
+	private JMenuItem jMenuItem_home;
+	private JMenuItem jMenuItem_dowload;
+	private JMenuItem jMenuItem_game;
+	private JMenuItem jMenuItem_exit;
+	private JMenuItem mntmNewMenuItem_1;
 	 
 	public DictionaryView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,40 +86,47 @@ public class DictionaryView extends JFrame {
 		contentPane.add(panel_tool, BorderLayout.WEST);
 		panel_tool.setLayout(new GridLayout(15,1));
 		
-		JMenuItem jMenuItem_home = new JMenuItem("Home");
-		jMenuItem_home.setForeground(new Color(255, 255, 255));
+		jMenuItem_home = new JMenuItem("Home");
+		jMenuItem_home.setForeground(new Color(64, 0, 128));
 		jMenuItem_home.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		jMenuItem_home.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\home.png"));
+		jMenuItem_home.setIcon(new ImageIcon("src\\view\\image\\home.png"));
 		jMenuItem_home.setBackground(new Color(0, 0, 0));
 		jMenuItem_home.addActionListener(dictionaryController);
 		panel_tool.add(jMenuItem_home);
 		
-		JMenuItem jMenuItem_dowload = new JMenuItem("Dowload");
+		jMenuItem_dowload = new JMenuItem("Dowload");
 		jMenuItem_dowload.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		jMenuItem_dowload.setForeground(new Color(64, 0, 128));
-		jMenuItem_dowload.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\dowload.png"));
+		jMenuItem_dowload.setForeground(new Color(255, 255, 255));
+		jMenuItem_dowload.setIcon(new ImageIcon("src\\view\\image\\dowload.png"));
 		panel_tool.add(jMenuItem_dowload);
 		
-		JMenuItem jMenuItem_game = new JMenuItem("Game");
+		jMenuItem_game = new JMenuItem("Game");
 		jMenuItem_game.setForeground(new Color(255, 255, 255));
 		jMenuItem_game.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		jMenuItem_game.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\game.png"));
+		jMenuItem_game.setIcon(new ImageIcon("src\\view\\image\\game.png"));
 		jMenuItem_game.addActionListener(dictionaryController);
 		panel_tool.add(jMenuItem_game);
 		
-		JMenuItem jMenuItem_exit = new JMenuItem("Exit");
-		jMenuItem_exit.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\exit.png"));
+		jMenuItem_exit = new JMenuItem("Exit");
+		jMenuItem_exit.setIcon(new ImageIcon("src\\view\\image\\exit.png"));
 		jMenuItem_exit.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		jMenuItem_exit.setBackground(new Color(240, 240, 240));
-		jMenuItem_exit.setForeground(new Color(64, 0, 128));
+		jMenuItem_exit.setForeground(new Color(255, 255, 255));
 		jMenuItem_exit.addActionListener(dictionaryController);
 		panel_tool.add(jMenuItem_exit);
 		
 		jMenuItem_help = new JMenuItem("Help");
-		jMenuItem_help.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\help.png"));
+		jMenuItem_help.setIcon(new ImageIcon("src\\view\\image\\help.png"));
 		jMenuItem_help.setForeground(new Color(255, 255, 255));
 		jMenuItem_help.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		panel_tool.add(jMenuItem_help);
+		
+		mntmNewMenuItem_1 = new JMenuItem("Translate");
+		mntmNewMenuItem_1.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\Papirus-Team-Papirus-Apps-System-switch-user.512.png"));
+		mntmNewMenuItem_1.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		mntmNewMenuItem_1.setForeground(new Color(255, 255, 255));
+		mntmNewMenuItem_1.setBackground(new Color(240, 240, 240));
+		panel_tool.add(mntmNewMenuItem_1);
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(227, 255, 227));
@@ -127,7 +141,7 @@ public class DictionaryView extends JFrame {
 		
 		jMenuItem_search = new JMenuItem("Search");
 		jMenuItem_search.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		jMenuItem_search.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\search.png"));
+		jMenuItem_search.setIcon(new ImageIcon("src\\view\\image\\search.png"));
 		jMenuItem_search.setBounds(743, 32, 179, 83);
 		jMenuItem_search.addActionListener(dictionaryController);
 		panel.add(jMenuItem_search);
@@ -203,7 +217,7 @@ public class DictionaryView extends JFrame {
         
         JMenuItem jMenuItem_sound = new JMenuItem("");
         jMenuItem_sound.setFont(new Font("Segoe UI", Font.ITALIC, 20));
-        jMenuItem_sound.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\sound.png"));
+        jMenuItem_sound.setIcon(new ImageIcon("src\\view\\image\\sound.png"));
         panel_word.add(jMenuItem_sound);
 
         JCheckBox chckbxNewCheckBox = new JCheckBox("Remembered");
@@ -211,8 +225,8 @@ public class DictionaryView extends JFrame {
         chckbxNewCheckBox.setBackground(new Color(208, 255, 208));
 
         // Thêm icon vào JCheckBox
-        ImageIcon uncheckedIcon = new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\bright_2.png");
-        ImageIcon checkedIcon = new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\bright.png");
+        ImageIcon uncheckedIcon = new ImageIcon("src\\view\\image\\bright_2.png");
+        ImageIcon checkedIcon = new ImageIcon("src\\view\\image\\bright.png");
 
         // Đặt icon khi checkbox chưa được chọn
         chckbxNewCheckBox.setIcon(uncheckedIcon);
@@ -222,13 +236,16 @@ public class DictionaryView extends JFrame {
         
         JMenuItem mntmNewMenuItem = new JMenuItem("Dowload");
         mntmNewMenuItem.setFont(new Font("Segoe UI", Font.ITALIC, 20));
-        mntmNewMenuItem.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Desktop\\javaproject\\Java_project_cuoiki\\src\\view\\image\\dowload.png"));
+        mntmNewMenuItem.setIcon(new ImageIcon("src\\view\\image\\dowload.png"));
         panel_word.add(mntmNewMenuItem);
 
         return panel_word;
     }
 	public void runGame() {
 		clearPanel();
+		setColorTool(change);
+		change = "Game";
+			jMenuItem_game.setForeground(new Color(64, 0, 128));
 		
 		// Tạo một JButton mới
 	    JButton gameButton = new JButton("Start Game");
@@ -250,6 +267,10 @@ public class DictionaryView extends JFrame {
 	}
 	public void selectHome() {
 		clearPanel();
+		setColorTool(change);
+		change = "Home";	
+		jMenuItem_home.setForeground(new Color(64, 0, 128));
+		
 		// Add textField_search and jMenuItem_search back to the panel
 	    panel.add(textField_search);
 	    panel.add(jMenuItem_search);
@@ -285,6 +306,14 @@ public class DictionaryView extends JFrame {
 	    // Cập nhật lại giao diện
 	    panel.revalidate();
 	    panel.repaint();
+	}
+	
+	public void setColorTool(String change) {
+		if(this.change.equals("Home")) {
+			this.jMenuItem_home.setForeground(new Color(255, 255, 255));
+		}else if(this.change.equals("Game")) {
+			this.jMenuItem_game.setForeground(new Color(255, 255, 255));
+		}
 	}
 }
 
